@@ -1,10 +1,10 @@
 function printPixelBoard(numberOfPixels) {
 
-  let whitePixel = document.querySelector('#pixel-board');
+  const whitePixel = document.querySelector('#pixel-board');
 
   for (let index = 0; index < numberOfPixels; index += 1) {
     if (whitePixel.children.length < numberOfPixels) {
-      let onePixel = document.createElement('div');
+      const onePixel = document.createElement('div');
       whitePixel.appendChild(onePixel).className = 'pixel';
     }
   }
