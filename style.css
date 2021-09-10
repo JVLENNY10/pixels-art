@@ -2,3 +2,38 @@ body {
   width: '1366px';
   height: '768px';
 }
+
+#title {
+  text-align: center;
+}
+
+#color-palette {
+  width: 550px;
+  height: 135px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.color {
+  width: 100px;
+  height: 100px;
+  margin: 15px;
+  display: inline-block;
+  border: 1px solid black;
+}
+
+#black {
+  background-color: black;
+}
+
+#cyan {
+  background-color: cyan;
+}
+
+#green {
+  background-color: green;
+}
+
+#red {
+  background-color: red;
+}
