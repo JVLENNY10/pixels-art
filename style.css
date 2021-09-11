@@ -39,14 +39,14 @@ body {
 }
 
 #pixel-board {
-  width: 510px;
+  width: 220px;
   margin: 0 auto;
   text-align: center;
 }
 
 .pixel {
-  width: 100px;
-  height: 100px;
+  width: 40px;
+  height: 40px;
   margin-top: -5px;
   margin-left: -1px;
   display: inline-block;
