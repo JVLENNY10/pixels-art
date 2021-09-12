@@ -1,5 +1,5 @@
 window.onload = function init() {
-  document.querySelector('#black').classList.add('selected');
+  document.querySelector('.black').classList.add('selected');
 };
 
 function paletteColor(numberOfColors) {
@@ -8,13 +8,13 @@ function paletteColor(numberOfColors) {
   for (let index = 1; index < numberOfColors; index += 1) {
     const color = document.createElement('div');
     if (index === 1) {
-      color.id = 'black';
+      color.classList.add('black');
     } else if (index === 2) {
-      color.id = 'cyan';
+      color.classList.add('cyan');
     } else if (index === 3) {
-      color.id = 'green';
+      color.classList.add('green');
     } else {
-      color.id = 'red';
+      color.classList.add('red');
     }
     colorItem.appendChild(color).classList.add('color');
   }
@@ -34,10 +34,10 @@ function pixelBoard(numberOfPixels) {
 }
 
 function selectColor(selection) {
-  const black = document.querySelector('#black');
-  const cyan = document.querySelector('#cyan');
-  const green = document.querySelector('#green');
-  const red = document.querySelector('#red');
+  const black = document.querySelector('.black');
+  const cyan = document.querySelector('.cyan');
+  const green = document.querySelector('.green');
+  const red = document.querySelector('.red');
 
   if (selection.target === black) {
     cyan.classList.remove('selected');
@@ -64,6 +64,30 @@ function selectColor(selection) {
   return selection;
 }
 
+function printBoard(selection) {
+  const selected = document.querySelector('.selected');
+  const containPixel = selection.target.classList.contains('pixel');
+
+  if (containPixel) {
+    if (selected.classList.contains('black')) {
+      selection.target.style.backgroundColor = 'black'
+      console.log('black');
+    } else if (selected.classList.contains('cyan')) {
+      selection.target.style.backgroundColor = 'cyan';
+      console.log('cyan');
+    } else if (selected.classList.contains('green')) {
+      selection.target.style.backgroundColor = 'green';
+      console.log('green');
+    } else if (selected.classList.contains('red')) {
+      selection.target.style.backgroundColor = 'red';
+      console.log('red');
+    }
+  }
+
+  return selection;
+}
+
 pixelBoard(25);
 paletteColor(5);
 document.addEventListener('click', selectColor);
+document.addEventListener('click', printBoard);

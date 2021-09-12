@@ -15,19 +15,19 @@ body {
   text-align: center;
 }
 
-#black {
+.black {
   background-color: black;
 }
 
-#cyan {
+.cyan {
   background-color: cyan;
 }
 
-#green {
+.green {
   background-color: green;
 }
 
-#red {
+.red {
   background-color: red;
 }
 
