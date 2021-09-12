@@ -3,11 +3,10 @@ window.onload = function () {
 };
 
 function paletteColor(numberOfColors) {
-  let color;
   const colorItem = document.querySelector('#color-palette');
 
   for (let index = 1; index < numberOfColors; index += 1) {
-    color = document.createElement('div');
+    let color = document.createElement('div');
     if (index === 1) {
       color.id = 'black';
     } else if (index === 2) {
@@ -24,11 +23,10 @@ function paletteColor(numberOfColors) {
 }
 
 function pixelBoard(numberOfPixels) {
-  let onePixel;
   const whitePixel = document.querySelector('#pixel-board');
 
   for (let index = 0; index < numberOfPixels; index += 1) {
-    onePixel = document.createElement('div');
+    let onePixel = document.createElement('div');
     whitePixel.appendChild(onePixel).classList.add('pixel');
   }
 
