@@ -39,32 +39,31 @@ function selectColor(selection) {
   const green = document.querySelector('#green');
   const red = document.querySelector('#red');
 
-  if (selection.target.id === 'black') {
+  if (selection.target === black) {
     cyan.classList.remove('selected');
     green.classList.remove('selected');
     red.classList.remove('selected');
-    selection.target.classList.toggle('selected');
-  } else if (selection.target.id === 'cyan') {
+    selection.target.classList.add('selected');
+  } else if (selection.target === cyan) {
     black.classList.remove('selected');
     green.classList.remove('selected');
     red.classList.remove('selected');
-    selection.target.classList.toggle('selected');
-  } else if (selection.target.id === 'green') {
+    selection.target.classList.add('selected');
+  } else if (selection.target === green) {
     black.classList.remove('selected');
     cyan.classList.remove('selected');
     red.classList.remove('selected');
-    selection.target.classList.toggle('selected');
-  } else if (selection.target.id === 'red') {
+    selection.target.classList.add('selected');
+  } else if (selection.target === red) {
     black.classList.remove('selected');
     cyan.classList.remove('selected');
     green.classList.remove('selected');
-    selection.target.classList.toggle('selected');
+    selection.target.classList.add('selected');
   }
 
   return selection;
 }
 
-document.addEventListener('click', selectColor);
-
 pixelBoard(25);
 paletteColor(5);
+document.addEventListener('click', selectColor);
