@@ -1,5 +1,5 @@
 window.onload = function init() {
-  document.querySelector('.black').classList.add('selected');
+  document.querySelector('#black').classList.add('selected');
 };
 
 function paletteColor(numberOfColors) {
@@ -8,18 +8,28 @@ function paletteColor(numberOfColors) {
   for (let index = 1; index < numberOfColors; index += 1) {
     const color = document.createElement('div');
     if (index === 1) {
-      color.classList.add('black');
+      color.id = 'black';
     } else if (index === 2) {
-      color.classList.add('cyan');
+      color.id = 'cyan';
     } else if (index === 3) {
-      color.classList.add('green');
+      color.id = 'green';
     } else {
-      color.classList.add('red');
+      color.id = 'red';
     }
     colorItem.appendChild(color).classList.add('color');
   }
 
   return colorItem;
+}
+
+function button() {
+  const sectionButton = document.querySelector('#button');
+  const createButton = document.createElement('button');
+
+  sectionButton.appendChild(createButton).id = 'clear-board';
+  createButton.innerHTML = 'Limpar';
+
+  return sectionButton;
 }
 
 function pixelBoard(numberOfPixels) {
@@ -34,10 +44,10 @@ function pixelBoard(numberOfPixels) {
 }
 
 function selectColor(selection) {
-  const black = document.querySelector('.black');
-  const cyan = document.querySelector('.cyan');
-  const green = document.querySelector('.green');
-  const red = document.querySelector('.red');
+  const black = document.querySelector('#black');
+  const cyan = document.querySelector('#cyan');
+  const green = document.querySelector('#green');
+  const red = document.querySelector('#red');
 
   if (selection.target === black) {
     cyan.classList.remove('selected');
@@ -69,16 +79,16 @@ function printBoard(selection) {
   const containPixel = selection.target.classList.contains('pixel');
 
   if (containPixel) {
-    if (selected.classList.contains('black')) {
-      selection.target.style.backgroundColor = 'black'
+    if (selected.id === 'black') {
+      selection.target.style.backgroundColor = 'black';
       console.log('black');
-    } else if (selected.classList.contains('cyan')) {
+    } else if (selected.id === 'cyan') {
       selection.target.style.backgroundColor = 'cyan';
       console.log('cyan');
-    } else if (selected.classList.contains('green')) {
+    } else if (selected.id === 'green') {
       selection.target.style.backgroundColor = 'green';
       console.log('green');
-    } else if (selected.classList.contains('red')) {
+    } else if (selected.id === 'red') {
       selection.target.style.backgroundColor = 'red';
       console.log('red');
     }
@@ -87,7 +97,23 @@ function printBoard(selection) {
   return selection;
 }
 
+function clickButton(selection) {
+  const pixelWhite = document.querySelectorAll('.pixel');
+  const clickedButton = document.querySelector('#clear-board');
+
+  if (selection.target === clickedButton) {
+    pixelWhite.forEach(function (item) {
+      console.log('apagou')
+      item.style.backgroundColor = 'white';
+    });
+  }
+
+  return selection;
+}
+
 pixelBoard(25);
+button();
 paletteColor(5);
 document.addEventListener('click', selectColor);
 document.addEventListener('click', printBoard);
+document.addEventListener('click', clickButton);
