@@ -1,119 +1,121 @@
-window.onload = function init() {
-  document.querySelector('#black').classList.add('selected');
-};
+function generateColors() {
+  const color = document.querySelectorAll('.color');
 
-function paletteColor(numberOfColors) {
-  const colorItem = document.querySelector('#color-palette');
-
-  for (let index = 1; index < numberOfColors; index += 1) {
-    const color = document.createElement('div');
-    if (index === 1) {
-      color.id = 'black';
-    } else if (index === 2) {
-      color.id = 'cyan';
-    } else if (index === 3) {
-      color.id = 'green';
+  color.forEach((items) => {
+    const item = items;
+    if (item.id === 'black') {
+      item.style.backgroundColor = 'black';
     } else {
-      color.id = 'red';
+      const randomColor = Math.floor(Math.random(0, 999999) * 1000000).toString();
+      item.style.backgroundColor = `#${randomColor}`;
     }
-    colorItem.appendChild(color).classList.add('color');
+  });
+}
+
+function colorPalette(numberOfColors) {
+  const palette = document.querySelector('#color-palette');
+
+  for (let index = 0; index < numberOfColors; index += 1) {
+    const div = document.createElement('div');
+    if (index === 0) {
+      div.id = 'black';
+    } else {
+      div.id = `color${index}`;
+    }
+    palette.appendChild(div).classList.add('color');
   }
 
-  return colorItem;
+  generateColors();
 }
 
-function button() {
-  const sectionButton = document.querySelector('#button');
-  const createButton = document.createElement('button');
+function pixelBoardGenerator() {
+  const boardSize = document.querySelector('#board-size');
+  const pixelBoard = document.querySelector('#pixel-board');
 
-  sectionButton.appendChild(createButton).id = 'clear-board';
-  createButton.innerHTML = 'Limpar';
-
-  return sectionButton;
-}
-
-function pixelBoard(numberOfPixels) {
-  const whitePixel = document.querySelector('#pixel-board');
-
-  for (let index = 0; index < numberOfPixels; index += 1) {
-    const onePixel = document.createElement('div');
-    whitePixel.appendChild(onePixel).classList.add('pixel');
+  if (boardSize.value < 5) {
+    boardSize.value = 5;
+  } else if (boardSize.value > 50) {
+    boardSize.value = 50;
   }
 
-  return whitePixel;
-}
-
-function selectColor(selection) {
-  const black = document.querySelector('#black');
-  const cyan = document.querySelector('#cyan');
-  const green = document.querySelector('#green');
-  const red = document.querySelector('#red');
-
-  if (selection.target === black) {
-    cyan.classList.remove('selected');
-    green.classList.remove('selected');
-    red.classList.remove('selected');
-    selection.target.classList.add('selected');
-  } else if (selection.target === cyan) {
-    black.classList.remove('selected');
-    green.classList.remove('selected');
-    red.classList.remove('selected');
-    selection.target.classList.add('selected');
-  } else if (selection.target === green) {
-    black.classList.remove('selected');
-    cyan.classList.remove('selected');
-    red.classList.remove('selected');
-    selection.target.classList.add('selected');
-  } else if (selection.target === red) {
-    black.classList.remove('selected');
-    cyan.classList.remove('selected');
-    green.classList.remove('selected');
-    selection.target.classList.add('selected');
+  const size = boardSize.value * boardSize.value;
+  for (let index = 0; index < size; index += 1) {
+    const div = document.createElement('div');
+    pixelBoard.appendChild(div).classList.add('pixel');
   }
 
-  return selection;
+  pixelBoard.style.width = `${boardSize.value * 41}px`;
+  boardSize.value = '';
 }
 
-function printBoard(selection) {
+function generateBoard(select) {
+  const pixel = document.querySelectorAll('.pixel');
+  const boardSize = document.querySelector('#board-size');
+  const generateButton = document.querySelector('#generate-board');
+
+  if (select.target === generateButton && boardSize.value !== '') {
+    // João Spinelli(T16) e Thiago Ximenes(T16) me ajudaram a chegar na lógica do for (Remover pixel por pixel).
+    pixel.forEach((item) => {
+      item.remove();
+    });
+
+    pixelBoardGenerator();
+  } else if (select.target === generateButton && boardSize.value === '') {
+    boardSize.value = '';
+    alert('Board inválido!');
+  }
+}
+
+function selectedColor(select) {
+  const color = document.querySelectorAll('.color');
+
+  if (select.target.classList.contains('color')) {
+    color.forEach((item) => {
+      item.classList.remove('selected');
+    });
+
+    color.forEach((item) => {
+      if (select.target === item) {
+        item.classList.add('selected');
+      }
+    });
+  }
+}
+
+function printBoard(select) {
+  const color = document.querySelectorAll('.color');
   const selected = document.querySelector('.selected');
-  const containPixel = selection.target.classList.contains('pixel');
 
-  if (containPixel) {
-    if (selected.id === 'black') {
-      selection.target.style.backgroundColor = 'black';
-      console.log('black');
-    } else if (selected.id === 'cyan') {
-      selection.target.style.backgroundColor = 'cyan';
-      console.log('cyan');
-    } else if (selected.id === 'green') {
-      selection.target.style.backgroundColor = 'green';
-      console.log('green');
-    } else if (selected.id === 'red') {
-      selection.target.style.backgroundColor = 'red';
-      console.log('red');
-    }
+  if (select.target.classList.contains('pixel')) {
+    color.forEach((item) => {
+      const selectColor = select.target;
+      if (selected.id === 'black') {
+        selectColor.style.backgroundColor = 'black';
+      } else if (selected.id === item.id) {
+        selectColor.style.backgroundColor = item.style.backgroundColor;
+      }
+    });
   }
-
-  return selection;
 }
 
-function clickButton(selection) {
-  const pixelWhite = document.querySelectorAll('.pixel');
-  const clickedButton = document.querySelector('#clear-board');
+function clearBoard(select) {
+  const pixel = document.querySelectorAll('.pixel');
+  const clearButton = document.querySelector('#clear-board');
 
-  if (selection.target === clickedButton) {
-    pixelWhite.forEach(function (item) {
-      console.log('apagou')
+  if (select.target === clearButton) {
+    pixel.forEach((items) => {
+      const item = items;
       item.style.backgroundColor = 'white';
     });
   }
-
-  return selection;
 }
 
-pixelBoard(25);
-button();
-paletteColor(5);
-document.addEventListener('click', selectColor);
-document.addEventListener('click', printBoard);
-document.addEventListener('click', clickButton);
+window.onload = function init() {
+  colorPalette(4);
+  pixelBoardGenerator();
+  document.addEventListener('click', clearBoard);
+  document.addEventListener('click', printBoard);
+  document.addEventListener('click', generateBoard);
+  document.addEventListener('click', selectedColor);
+  document.querySelector('#black').classList.add('selected');
+};
