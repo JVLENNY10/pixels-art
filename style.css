@@ -21,6 +21,7 @@ header {
 }
 
 main {
+  color: #23232e;
   display: flex;
   flex-direction: column;
   height: 90vh;
@@ -36,7 +37,6 @@ main {
 #board-size {
   border: 5px solid #23232e;
   border-radius: 15px;
-  color: #23232e;
   font-size: 20px;
   height: 35px;
   text-align: center;
@@ -52,7 +52,6 @@ main {
 .buttons {
   border: 0;
   border-radius: 50px;
-  color: #23232e;
   font-size: 20px;
   padding: 10px 0;
   transition: 0.8s;
@@ -108,7 +107,7 @@ main {
 
 .pixel {
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #23232e;;
   height: 40px;
   margin-left: -1px;
   margin-top: -5px;
