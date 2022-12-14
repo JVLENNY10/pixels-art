@@ -1,72 +1,117 @@
+* {
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
 body {
+  background-color: #13131c;
   background-image: url('images/paisagem.jpg');
+  /* background-repeat: no-repeat; */
+  background-size: cover;
+}
+
+header {
+  align-items: center;
+  background-color: #23232e;
+  color: #fff;
+  display: flex;
+  height: 10vh;
+  justify-content: center;
+  letter-spacing: 3px;
 }
 
 main {
-  margin-top: 6%;
+  display: flex;
+  flex-direction: column;
+  height: 90vh;
+  justify-content: space-evenly;
   text-align: center;
 }
 
 #inputs {
+  margin: 10px auto 0;
   width: 205px;
-  margin: 5px auto 15px;
 }
 
 #board-size {
+  border: 5px solid #23232e;
+  border-radius: 15px;
+  color: #23232e;
+  font-size: 20px;
+  height: 35px;
+  text-align: center;
+  width: 95%;
+}
+
+#buttons-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10px;
+}
+
+.buttons {
+  border: 0;
+  border-radius: 50px;
+  color: #23232e;
+  font-size: 20px;
+  padding: 10px 0;
+  transition: 0.8s;
   width: 45%;
-  height: 30px;
-  border-radius: 30px;
-  border: 3px solid black;
+}
+
+.buttons:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }
 
 #generate-board {
-  width: 45%;
-  height: 30px;
-  font-size: 15px;
-  border-radius: 30px;
-  background-color: green;
-  border: 5px solid darkgreen;
+  background-color: #1DB954;
 }
 
 #clear-board {
-  width: 205px;
-  height: 50px;
-  font-size: 20px;
-  margin-top: 9px;
-  border-radius: 30px;
-  background-color: red;
-  border: 5px solid darkred;
+  background-color: #b91d1d;
 }
 
 #color-palette {
-  width: 215px;
-  height: 50px;
+  align-items: center;
   display: flex;
-  margin: -15px auto 0;
+  height: 50px;
+  justify-content: space-evenly;
+  margin: 10px auto 0;
+  width: 205px;
 }
 
 .color {
-  width: 40px;
+  border: 1px solid #23232e;
   height: 40px;
-  margin: 0 5px;
-  border: 1px solid black;
+  transition: 0.3s;
+  width: 40px;
+}
+
+.color:hover {
+  cursor: pointer;
+  height: 45px;
+  width: 45px;
 }
 
 .selected {
-  width: 45px;
   height: 45px;
+  width: 45px;
 }
 
 #pixel-board {
-  margin: 0 auto;
+  flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  margin: 20px auto;
 }
 
 .pixel {
-  width: 40px;
-  height: 40px;
-  margin-top: -5px;
-  margin-left: -1px;
-  display: inline-block;
   background-color: white;
   border: 1px solid black;
+  height: 40px;
+  margin-left: -1px;
+  margin-top: -5px;
+  width: 40px;
 }
